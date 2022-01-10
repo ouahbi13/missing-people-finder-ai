@@ -6,43 +6,48 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <!-- Compiled and minified CSS -->
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+        <link rel="stylesheet" href="../static/css/main.css">
         <title>MPF login</title>
     </head>
     <body>
-      <style>
-          img {
-            width: 300px;
-            height: 300px;
-          }
-      </style>
 
-        <nav class="z-depth-0 grey lighten-4">
+        <nav class="z-depth-0 lighten-1 blue">
             <div class="nav-wrapper container">
-              <ul id="nav-mobile" class="right hide-on-med-and-down">
+              
+              <ul id="nav-mobile" class="right">
                   <li class="logged-in" style="display: none;">
-                    <a href="#" class="grey-text modal-trigger" data-target="modal-account">Account</a>
+                    <a href="#" class="nav-link white-text modal-trigger" data-target="modal-account">Account</a>
+                  </li>
+                  
+                  <li class="logged-in" style="display: none;">
+                    <a href="#" class="nav-link white-text modal-trigger" data-target="modal-add">Add Person</a>
                   </li>
                   <li class="logged-in" style="display: none;">
-                    <a href="#" class="grey-text" id="logout">Logout</a>
-                  </li>
-                  <li class="logged-in" style="display: none;">
-                    <a href="#" class="grey-text modal-trigger" data-target="modal-add">Add Person</a>
+                    <a href="#" class="nav-link white-text modal-trigger" data-target="modal-find">File A Sightening</a>
                   </li>
                   <li class="logged-out" style="display: none;">
-                    <a href="#" class="grey-text modal-trigger" data-target="modal-login">Login</a>
+                    <a href="#" class="nav-link white-text modal-trigger" data-target="modal-login">Login</a>
                   </li>
                   <li class="logged-out" style="display: none;">
-                    <a href="#" class="grey-text modal-trigger" data-target="modal-signup">Sign up</a>
+                    <a href="#" class="nav-link white-text modal-trigger" data-target="modal-signup">Sign up</a>
+                  </li>
+                  <li class="logged-in" style="display: none;">
+                    <a href="#" class="nav-link white-text" id="logout">Logout</a>
                   </li>
                 </span>
               </ul>
             </div>
         </nav>
+      
         <!-- SIGN UP MODAL -->
         <div id="modal-signup" class="modal">
             <div class="modal-content">
             <h4>Sign up</h4><br />
-            <form id="signup-form">
+            <form  id="signup-form">
+                <div class="input-field">
+                  <input type="text" id="signup-name" required />
+                  <label for="signup-name">Enter your name</label>
+                </div>
                 <div class="input-field">
                 <input type="email" id="signup-email" required />
                 <label for="signup-email">Email address</label>
@@ -51,7 +56,8 @@
                 <input type="password" id="signup-password" required />
                 <label for="signup-password">Choose password</label>
                 </div>
-                <button class="btn yellow darken-2 z-depth-0">Sign up</button>
+                
+                <button class="btn blue darken-2 z-depth-0">Sign up</button>
             </form>
             </div>
         </div>
@@ -69,7 +75,7 @@
                 <input type="password" id="login-password" required />
                 <label for="login-password">Your password</label>
                 </div>
-                <button class="btn yellow darken-2 z-depth-0">Login</button>
+                <button class="btn blue darken-2 z-depth-0">Login</button>
             </form>
             </div>
         </div>
@@ -82,33 +88,37 @@
             </div>
         </div>
 
-        <!-- CREATE FIND PERSON MODAL -->
+        <!-- CREATE ADD PERSON MODAL -->
         <div id="modal-add" class="modal">
             <div class="modal-content">
             <h4>Add a Missing Person</h4><br />
-            <form id="add-form">
+            <form method="post" id="add-form">
                 <div class="input-field">
-                  <input type="text" id="first-name" required>
+                  <input type="text" id="first-name" name = "first-name" >
                   <label for="first-name">First Name</label>
                 </div>
                 <div class="input-field">
-                  <input type="text" id="last-name" required>
+                  <input type="text" id="last-name" >
                   <label for="last-name">Last Name</label>
                 </div>
                 <div class="input-field">
-                  <input type="number" id="age" required>
+                  <input type="number" id="age" >
                   <label for="age">Age</label>
                 </div>
                 <div class="input-field">
-                  <input type="date" id="birth-date" required>
+                  <input type="text" id="last-seen" >
+                  <label for="last-seen">Where and when was the person last seen ?</label>
+                </div>
+                <div class="input-field">
+                  <input type="date" id="birth-date" >
                   <label for="birth-date">Date of Birth</label>
                 </div>
                 <div class="input-field">
-                  <input type="text" id="birth-place" required>
+                  <input type="text" id="birth-place" >
                   <label for="birth-place">Place of Birth</label>
                 </div>
                 <div class="input-field">
-                  <input type="number" id="taille" required>
+                  <input type="number" id="taille" >
                   <label for="taille">Height</label>
                 </div>
                 <div class="input-field">
@@ -116,22 +126,80 @@
                   <input type="file" id="person-image" accept="image/png, image/jpeg, image/jpg">
                 </div>
                 <div class="input-field">
-                  <textarea id="description" class="materialize-textarea" required></textarea>
-                  <label for="description">Describe the person you have seen:</label>
+                  <textarea id="description" class="materialize-textarea" ></textarea>
+                  <label for="description">Describe the missing person:</label>
                 </div>
-                <button class="btn yellow darken-2 z-depth-0">Add</button>
+                <button type="submit" class="btn blue darken-2 z-depth-0">Add</button>
             </form>
             </div>
         </div>
 
-        <!-- MISSING LIST -->
-        <div class="container" style="margin-top: 40px;">
-          <ul class="collapsible z-depth-0 missing" style="border: none;">
-
-          </ul>
+        <!-- CREATE FIND PERSON MODAL -->
+        <div id="modal-find" class="modal">
+          <div class="modal-content">
+          <h4>Enter the available information of the suspected person:</h4><br />
+          <form action="/match" method="post" id="find-form" enctype="multipart/form-data">
+              <div class="input-field">
+                <input type="text" id="first-name-find" name="first-name-find">
+                <label for="first-name-find">First Name If Known</label>
+              </div>
+              <div class="input-field">
+                <input type="text" id="last-name-find" name="last-name-find">
+                <label for="last-name-find">Last Name If Known</label>
+              </div>
+              <div class="input-field">
+                <input type="number" id="age-find">
+                <label for="age-find">Age (If Not Known Give An Estimation)</label>
+              </div>
+              <div class="input-field">
+                <input type="text" id="adress-find">
+                <label for="adress-find">Town, Adress, Origins Or Any Related Information</label>
+              </div>
+              <div class="input-field">
+                <input type="number" id="taille-find">
+                <label for="taille-find">Height or An Estimation of Height</label>
+              </div>
+              <div class="input-field">
+                <label for="person-image-find" >Do You Have An Image Of The Person ? If Yes, Upload It Please</label><br><br>
+                <!-- <input type="file" id="person-image-find" name="img-find"> -->
+                <input type="file" id="person-image-find" name="img-find" accept="image/png, image/jpeg, image/jpg">
+              </div>
+              <div class="input-field">
+                <textarea id="description-find" class="materialize-textarea"></textarea>
+                <label for="description-find">Give a detailed description of the Person Looks (Skin, Eyes, , Hair , Marks, etc ):</label>
+              </div>
+              <button type="submit" name="find-submit" class="btn blue darken-2 z-depth-0">Find Match</button>
+          </form>
+          </div>
         </div>
 
-        
+        <!-- Landing Page -->
+        <div class="logged-out-container" style="display: none;">
+          <section class="banner">
+            <div class="row">
+              <div class="banner-left col m7 s12">
+                <img src="../images/banner-bg.svg" alt="" class="banner-img">
+              </div>
+              <div class="banner-right col m5 s12">
+                <h1>Collaborate In Finding People's Missing Close Ones</h1>
+                <h2>Did you see someone, and you suspect them to be missing ? Help us in reuniting them with their families</h2>
+                <p>Sign up now and fill the form</p>
+              </div>
+            </div>
+          </section>
+        </div>
+
+        <!-- MISSING LIST -->
+        <div class="container" style="margin-top: 40px;">
+          <div class="missing" style="border: none;">
+
+          </div>
+                   
+        </div>
+
+        <script src="https://code.jquery.com/jquery-3.5.1.js"
+          integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+          crossorigin="anonymous"></script>
         <script src="https://www.gstatic.com/firebasejs/9.2.0/firebase-app-compat.js"></script>
         <script src="https://www.gstatic.com/firebasejs/9.2.0/firebase-auth-compat.js"></script>
         <script src="https://www.gstatic.com/firebasejs/9.2.0/firebase-firestore-compat.js"></script>
@@ -180,7 +248,25 @@
         </script>
         <!-- Compiled and minified JavaScript -->
         <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
-        <script src="scripts/auth.js"></script>
-        <script src="scripts/index.js"></script>
+        <script src="../static/js/auth.js"></script>
+        <script src="../static/js/index.js"></script>
+        <!-- <script type="text/javascript">
+          $(document).on('submit','#find-form',function(e){
+            e.preventDefault();
+            // $.ajax({
+            //   type:'POST',
+            //   url:'/',
+            //   data:{
+            //     firstName:$("#first-name-find").val(),
+            //     lastName:$("#last-name-find").val(),
+            //     personImg:$("#person-img-find")
+            //   },
+            //   success:function()
+            //   {
+            //     // alert('saved');
+            //   }
+            // })
+          });
+        </script> -->
     </body>
 </html>

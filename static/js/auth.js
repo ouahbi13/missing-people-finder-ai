@@ -69,6 +69,7 @@ addForm.addEventListener('submit', (e) => {
         firstName: addForm['first-name'].value,
         lastName: addForm['last-name'].value,
         age: addForm['age'].value,
+        lastSeen: addForm['last-seen'].value,
         birthDate: addForm['birth-date'].value,
         birthPlace: addForm['birth-place'].value,
         taille: addForm['taille'].value,
@@ -82,7 +83,21 @@ addForm.addEventListener('submit', (e) => {
     // console.log(fileRef.getDownloadURL())
     // imgURL = fileRef.getDownloadURL()
   })
-  
-
-  
 })
+
+// const findForm = document.querySelector("#find-form")
+// findForm.addEventListener('submit', (e) => {
+//   // e.preventDefault()
+//   // var imgURL;
+//   // const file = findForm['person-image-find'].files[0];
+//   // const fileRef = storageRef.child(file.name)
+//   // fileRef.put(file).then(() => {
+//   //   fileRef.getDownloadURL().then((url) => {
+//   //     console.log(url)
+//   //     imgURL = url
+//   //   })
+//   //   // console.log(fileRef.getDownloadURL())
+//   //   // imgURL = fileRef.getDownloadURL()
+//   // })
+// })
+
